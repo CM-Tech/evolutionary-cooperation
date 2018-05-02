@@ -1,0 +1,22 @@
+{
+  "name": "evolutionary-cooperation",
+  "version": "1.0.0",
+  "description": "Evolving Cooperation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CM-Tech/evolutionary-cooperation.git"
+  },
+  "author": "CM-Tech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CM-Tech/evolutionary-cooperation/issues"
+  },
+  "homepage": "https://github.com/CM-Tech/evolutionary-cooperation#readme",
+  "dependencies": {
+    "neataptic": "^1.4.7"
+  }
+}
