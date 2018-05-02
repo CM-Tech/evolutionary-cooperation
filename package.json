@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/CM-Tech/evolutionary-cooperation#readme",
   "dependencies": {
-    "neataptic": "^1.4.7"
+    "asciichart": "^1.5.7",
+    "neataptic": "^1.4.7",
+    "sprintf-js": "^1.1.1"
   }
 }
