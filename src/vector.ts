@@ -11,6 +11,9 @@ class Vector {
   scale(s: number): Vector {
     return new Vector(this.x * s, this.y * s);
   }
+  add(v: Vector): Vector {
+    return new Vector(this.x + v.x, this.y + v.y);
+  }
   normalize(): Vector {
     if (this.length() === 0) {
       return new Vector(1, 0);

@@ -16,29 +16,10 @@ app.renderer.autoResize = true;
 app.renderer.resize(window.innerWidth, window.innerHeight);
 window.onresize = function() {
   app.renderer.resize(window.innerWidth, window.innerHeight);
-  bkSprite.width = window.innerWidth;
-  bkSprite.height = window.innerHeight;
+  //bkSprite.width = window.innerWidth;
+  //bkSprite.height = window.innerHeight;
 }
-var bk = PIXI.utils.rgb2hex(ColorUtils.hslToRgb(198 / 360, 100 / 100, 97 / 100));
-var bk2 = PIXI.utils.rgb2hex(ColorUtils.hslToRgb(195 / 360, 11 / 100, 79 / 100));
-var bkSize = 40;
-var bkGrid = new PIXI.Graphics();
-bkGrid.beginFill(bk);
-bkGrid.drawRect(0, 0, bkSize, bkSize);
-bkGrid.endFill();
-bkGrid.beginFill(bk2);
-bkGrid.drawRect(0, 0, 1, bkSize);
-bkGrid.endFill();
-bkGrid.beginFill(bk2);
-bkGrid.drawRect(0, 0, bkSize, 1);
-bkGrid.endFill();
-var bkTex = bkGrid.generateCanvasTexture();
-var bkSprite = new PIXI.extras.TilingSprite(
-  bkTex,
-  app.screen.width,
-  app.screen.height
-);
-app.stage.addChild(bkSprite);
+
 var blob: BlobShape = new BlobShape(100, [356 / 360, 87 / 100, 54 / 100]);
 var blob2: BlobShape = new BlobShape(100, [196 / 360, 87 / 100, 54 / 100]);
 let triangle = new PIXI.Graphics();

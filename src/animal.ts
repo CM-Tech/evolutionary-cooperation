@@ -13,6 +13,7 @@ class Animal {
   brain: any;
   position: Vector = new Vector(0, 0);
   velocity: Vector = new Vector(0, 0);
+  force: Vector = new Vector(0, 0);
   radius: number = 20;
   color: Array<number>;
   shape: PIXI.Graphics;
