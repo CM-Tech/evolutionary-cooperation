@@ -1,6 +1,7 @@
 import * as neataptic from "neataptic";
 import { ColorUtils } from "./colors";
 import { Vector } from "./vector";
+import { BlobShape } from "./blob";
 var architect = neataptic.architect;
 var Network = neataptic.Network;
 var methods = neataptic.methods;
@@ -17,12 +18,14 @@ class Animal {
   radius: number = 20;
   color: Array<number>;
   shape: PIXI.Graphics;
-  constructor(parents?: Array<Animal>, options?: { roundMemory: any; }) {
+  blob: BlobShape;
+  constructor(parents?: Array<Animal>, options?: { roundMemory?: any, radius?: number }) {
     this.roundMemory = 8;
     this.fitness = 0;
     var mutRate = 3;
     if (options) {
       if (options.roundMemory) this.roundMemory = options.roundMemory;
+      if (options.radius) this.radius = options.radius;
     }
     if (parents && parents.length > 1) {
       this.brain = Network.crossOver(parents[0].brain, parents[1].brain);
@@ -34,6 +37,7 @@ class Animal {
       //this.brain.mutate(methods.mutation.ALL);
     }
     this.shape = new PIXI.Graphics();
+    this.blob = new BlobShape(this.radius, [1, 0, 0])
   }
   choice(rounds: Array<number>): number {
     var res = this.brain.activate(rounds);
@@ -43,8 +47,9 @@ class Animal {
     return 1;
   }
   render(): void {
+    this.blob.color = this.color;
     var shape = this.shape;
-    shape.clear();
+    /*shape.clear();
     shape.beginFill(PIXI.utils.rgb2hex(ColorUtils.hslToRgb(this.color[0], this.color[1], this.color[2])));
     shape.lineStyle(6, PIXI.utils.rgb2hex(ColorUtils.hslToRgb(this.color[0], this.color[1] / 87 * 76, this.color[2] / 55 * 49)));
 
@@ -53,7 +58,8 @@ class Animal {
 
     //Fill shape's color
     shape.endFill();
-    shape.closePath();
+    shape.closePath();*/
+    this.blob.render(shape);
     shape.x = this.position.x;
     shape.y = this.position.y;
   }

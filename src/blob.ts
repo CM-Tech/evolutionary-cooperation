@@ -9,7 +9,7 @@ class BlobShape {
   render(shape: PIXI.Graphics): void {
     shape.clear();
     shape.beginFill(PIXI.utils.rgb2hex(ColorUtils.hslToRgb(this.color[0], this.color[1], this.color[2])));
-    shape.lineStyle(4, PIXI.utils.rgb2hex(ColorUtils.hslToRgb(this.color[0], this.color[1], this.color[2])));
+    shape.lineStyle(4, PIXI.utils.rgb2hex(ColorUtils.hslToRgb(this.color[0], this.color[1] / 87 * 76, this.color[2] / 55 * 49)));
 
     //Use `drawPolygon` to define the triangle as
     //a path array of x/y positions
@@ -83,7 +83,7 @@ class BlobShape {
     this.radius = radius;
     this.color = color;
     this.radialData = [];
-    for (var i = 0; i < this.radius * 4; i++) {
+    for (var i = 0; i < 50; i++) {
       this.radialData.push((Math.random() - 0.5) * 10 + this.radius);
     }
   };
