@@ -39,12 +39,13 @@ class World {
     );
     this.container.addChild(this.bkSprite);
     //this.container.addChild(this.background);
-    for (var i = 0; i < 4; i++) {
-      for (var j = 0; j < 4; j++) {
-        var animal = new Animal([], { radius: 25 + Math.random() * 50 });
-        animal.color = [Math.floor(Math.random() * 6) / 6, 87 / 100, 54 / 100];
+    var s = 6;
+    for (var i = 0; i < s; i++) {
+      for (var j = 0; j < s; j++) {
+        var animal = new Animal([], { radius: 50 });
+        animal.color = [i / s + j / s / s, 87 / 100, 54 / 100];
         //animal.color = [(i % 6) / 6, 87 / 100, 54 / 100];
-        animal.position = new Vector(i / 4 * (this.width - 20 * 2) + 20, j / 4 * (this.height - 20 * 2) + 20);
+        animal.position = new Vector(i / s * (this.width - 20 * 2) + 20, j / s * (this.height - 20 * 2) + 20);
         animal.velocity = new Vector(Math.random() - 0.5, Math.random() - 0.5).normalize().scale(0.1);
         this.container.addChild(animal.shape);
         this.animals.push(animal);
@@ -53,8 +54,9 @@ class World {
 
   };
   render(delta: number) {
+    var delta = Math.min(1000/60, delta);
     var l = 1 - Math.pow(0.9, (delta));
-    var l2 = 1 - Math.pow(0.9, (delta) / 10);
+    var l2 = 1 - Math.pow(0.9, (delta) );
     this.animals.map(x => x.render());
     for (var i = 0; i < this.animals.length; i++) {
       this.animals[i].blob.smooth(l);
@@ -76,6 +78,10 @@ class World {
           this.animals[j].blob.wall(Math.atan2(-deltaV.y, -deltaV.x), deltaV.length() / (this.animals[i].radius + this.animals[j].radius) * (this.animals[j].radius), l2);
         }
       }
+    }
+    for (var i = 0; i < this.animals.length; i++) {
+      this.animals[i].blob.smooth(l);
+      this.animals[i].blob.ave(l);
     }
     for (var i = 0; i < this.animals.length; i++) {
       this.animals[i].velocity = this.animals[i].velocity.add(this.animals[i].force);
